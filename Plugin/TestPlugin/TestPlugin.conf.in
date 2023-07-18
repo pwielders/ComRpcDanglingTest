@@ -1,0 +1,9 @@
+autostart = True
+
+configuration = JSON()
+greetings = ["Hello", "Good Morning", "Hi"]
+configuration.add("Greetings", greetings)
+
+root = JSON()
+root.add("mode", "Local")
+configuration.add("root", root)
