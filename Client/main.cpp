@@ -6,6 +6,14 @@
 #include <core/core.h>
 #include <plugins/plugins.h>
 
+// Windows issue only!
+// Since we are building the interface as a *stand-alone* we do not want to import
+// the default constructor/desctructor. 
+#ifdef EXTERNAL
+#undef EXTERNAL
+#endif
+#define EXTERNAL
+
 #include <interfaces/ITestPlugin.h>
 
 using namespace WPEFramework;
@@ -37,7 +45,11 @@ int main(int argc, char const* argv[])
             success = testPlugin->Test(result);
             printf("Got result: %s (%s)\n", result.c_str(), Core::ErrorToString(success));
 
+            #ifdef __WINDOWS__
+            abort();
+            #else
             raise(SIGSEGV);
+            #endif
 
             testPlugin->Unregister(&notificationHandler);
             testPlugin->Release();

@@ -1,10 +1,10 @@
-
 #pragma once
 
 #include "Module.h"
 
 namespace WPEFramework {
 namespace Exchange {
+
     /* @json 1.0.0 */
     struct EXTERNAL ITestPlugin : virtual public Core::IUnknown {
         enum {
@@ -17,9 +17,13 @@ namespace Exchange {
                 ID = ID_TEST_PLUGIN_NOTIFICATION
             };
 
+            ~INotification() override = default;
+
             // @brief A generic example notification clients can subscribe to
             virtual void SomethingHappend() = 0;
         };
+
+        ~ITestPlugin() override = default;
 
         /* @brief Register for notifications from the sample plugin */
         virtual uint32_t Register(ITestPlugin::INotification* notification) = 0;

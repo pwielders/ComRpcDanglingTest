@@ -1,7 +1,14 @@
-
 #pragma once
 
 #include "Module.h"
+
+// Windows issue only!
+// Since we are building the interface as a *stand-alone* we do not want to import
+// the default constructor/desctructor. 
+#ifdef EXTERNAL
+#undef EXTERNAL
+#endif
+#define EXTERNAL
 
 #include <interfaces/ITestPlugin.h>
 
@@ -30,7 +37,7 @@ namespace Plugin {
 
                 ASSERT(remote != nullptr);
 
-                if (interfaceId == Exchange::ID_TEST_PLUGIN_NOTIFICATION) {
+                if (interfaceId == Exchange::ITestPlugin::INotification::ID) {
                     const auto revokedInterface = remote->QueryInterface<Exchange::ITestPlugin::INotification>();
                     if (revokedInterface) {
                         _parent.CallbackRevoked(revokedInterface);

@@ -67,7 +67,7 @@ namespace Plugin {
                 Exchange::JTestPlugin::Unregister(*this);
 
                 _testPlugin->Release();
-                _testPlugin == nullptr;
+                _testPlugin = nullptr;
             }
 
             _service->Release();

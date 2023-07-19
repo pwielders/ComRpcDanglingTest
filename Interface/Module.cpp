@@ -1,0 +1,7 @@
+
+#include "Module.h"
+
+#define COMPILER_DEFAULT_GENERATION
+#include "ITestPlugin.h"
+
+MODULE_NAME_DECLARATION(BUILD_REFERENCE)
